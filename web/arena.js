@@ -11,10 +11,10 @@ let ROOM='na:room:PUB222',roomLimit=8,activeRoom=null,roomManager=null;
 const IS_TOUCH=matchMedia('(pointer: coarse)').matches||('ontouchstart' in window);
 const id=crypto.randomUUID(),peers=new Map(),bots=[],obstacles=[],shots=[],pickups=[];
 let selectedColor=0,channel=null,client=null,connected=false,joining=false,playing=false,paused=false,dead=false;
-let nickname='',hp=100,ammo=24,kills=0,deaths=0,reloading=false,reloadHandle=null;
+let nickname='',hp=100,ammo=28,kills=0,deaths=0,reloading=false,reloadHandle=null;
 let yaw=0,pitch=-.015,yVel=0,grounded=true,lastShot=0,netAccumulator=0,respawnHandle=null,mouseHeld=false,soundEnabled=true;
 const WEAPONS=[{name:'PULSE RIFLE',emoji:'⚡',damage:25,interval:180,mag:28,reload:1500,range:140,spread:.008},{name:'BLASTER',emoji:'💥',damage:42,interval:760,mag:8,reload:1750,range:32,spread:.023},{name:'MARKSMAN',emoji:'🎯',damage:45,interval:590,mag:12,reload:1950,range:210,spread:.001},{name:'NEON SMG',emoji:'🔫',damage:16,interval:95,mag:35,reload:1550,range:85,spread:.026}];
-let equipped=0,magazines=WEAPONS.map(w=>w.mag),radarCanvas=null,radarCtx=null,radarTimer=0;
+let equipped=0,magazines=WEAPONS.map(w=>w.mag),radarCanvas=null,radarCtx=null,radarTimer=0,lastShotVisual=0;
 let scene,camera,renderer,world,playerAvatar,sun,skyDisk,clock=new THREE.Clock(),elapsed=0;
 let toastHandle=0,hitHandle=0,damageHandle=0;
 const moveKeys=new Set(),mobileMove={x:0,y:0},tmpV=new THREE.Vector3(),raycaster=new THREE.Raycaster();
@@ -388,7 +388,7 @@ function shoot(){
  }
  const muzzleStart=playerAvatar.root.localToWorld(new THREE.Vector3(.78,1.55,-1.55));
  makeTracer(muzzleStart,endpoint);
- broadcast('shot',{id,end:[endpoint.x,endpoint.y,endpoint.z]});
+ if(now-lastShotVisual>310){lastShotVisual=now;broadcast('shot',{id,end:[endpoint.x,endpoint.y,endpoint.z]})}
 }
 const obstacleHitMeshes=[];
 function prepareObstacles(){
@@ -473,7 +473,7 @@ function updateLocal(dt){
  playerAvatar.root.position.copy(state.pos);playerAvatar.root.rotation.y=yaw;
  renderAvatar(playerAvatar,Math.hypot(state.velocity.x,state.velocity.z),elapsed);
  cameraUpdate(dt);
- netAccumulator+=dt;if(netAccumulator>.48){netAccumulator=0;broadcastState()}
+ netAccumulator+=dt;if(netAccumulator>(.36+peers.size*.14)){netAccumulator=0;broadcastState()}
 }
 function cameraUpdate(dt){
  const f=new THREE.Vector3(-Math.sin(yaw),0,-Math.cos(yaw));
