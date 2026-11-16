@@ -1,26 +1,43 @@
-# NEON ARENA — Deathmatch 3D
+# NEON ARENA — ISLA TITÁN: SHOOTER 3D ONLINE
 
-Sitio: https://neon-arena-gaming.vercel.app/
+**Abrir y jugar:** https://neon-arena-gaming.vercel.app/
 
-Juego 3D en tercera persona con personajes estilizados de bloques, un único mapa y una sala compartida en Supabase Realtime. El juego funciona con hasta 6 participantes por sala en esta versión de prueba. Si juegas solo, aparecen bots locales para practicar.
+Se implementó un juego 3D en tercera persona con una isla grande, puerto, costa, bosque, ciudad futurista, laboratorios, fortaleza, avatares humanoides acorazados, cuatro armas, radar y salas con códigos para amigos.
 
-## Controles
-PC: WASD mover, mouse mirar, clic disparar, espacio saltar, shift correr, R recargar, ESC pausa.
-Móvil: joystick virtual, gesto para apuntar, botones de salto/disparo/recarga.
+## Funcionalidades
+- Crear sala de amigos y compartir código de 6 caracteres o enlace.
+- Unirse a sala privada con un código o entrar a isla pública PUB222.
+- Multijugador mediante Supabase Realtime Presence y Broadcast (versión experimental).
+- Bots de práctica cuando no hay otros usuarios conectados.
+- Armas: Pulse Rifle, Blaster, Marksman y Neon SMG.
+- HUD de salud, munición, eliminaciones, radar y respawn.
+- PC: WASD, mouse/clic, espacio saltar, shift correr, R recargar, 1–4 armas, ESC pausa.
+- Móvil: joystick, gesto táctil de apuntar y botones de disparo/salto/recarga.
 
-## Código fuente
-- web/index.html: lobby, paneles y HUD.
-- web/arena.css: interfaz responsive.
-- web/arena.js: escena Three.js, combate, movimiento, bots y realtime.
-- web/assets/: SVG originales de marca y póster.
-- web/config.js: URL y clave PUBLICABLE de Supabase. Nunca subir una clave privada.
-- docs/REALTIME.md: protocolo de eventos y límites técnicos.
+## Código
+- web/index.html, web/arena.css, web/island.css
+- web/arena.js: controlador, combate y sincronización
+- web/island.js: mapa procedural
+- web/rooms.js: crear, unirse y compartir salas
+- web/assets/*.svg: gráficos vectoriales
+- web/config.js: configuración publicable del proyecto
+- supabase/functions/arena-rooms/index.ts: API de salas
+- supabase/migrations/20261116020000_arena_rooms.sql
+- docs/CLAUDE.md: instrucciones para Claude
+- docs/ISLAND_GAME.md: arquitectura, puntos del mapa y pruebas
 
-Servir web/ con cualquier servidor HTTP. No requiere npm ni compilación; los módulos Three.js y Supabase JS se cargan desde CDN.
+## Probar con amigos
+1. Entrar en https://neon-arena-gaming.vercel.app/.
+2. Elegir CREAR SALA, escribir nombre y pulsar CREAR.
+3. Copiar enlace y enviarlo al amigo.
+4. Los dos entran con nickname y presionan ENTRAR A JUGAR.
+5. Verificar presencia en marcador, movimientos, armas y disparos.
+6. Alternativa: seleccionar ISLA PÚBLICA en ambos.
 
-## Estado técnico
-La versión inicial está publicada con la conexión de Vercel. Los cambios del repositorio no se despliegan automáticamente todavía.
-El multiplayer por Broadcast NO tiene servidor autoritativo; los movimientos y daños pueden falsificarse desde un navegador alterado. No es apto para clasificaciones profesionales ni premios reales hasta añadir validación centralizada, controles antifraude y pruebas con varios jugadores reales.
-El backend legado para Neon Blast (SQL/Edge Functions) está todavía en supabase/ pero NO lo utiliza Deathmatch.
+El juego estático puede servirse desde web/ con python -m http.server 8000. Requiere WebGL, conexión y un navegador moderno.
 
-El marcador de Deathmatch es temporal y los bots son locales. Los planes gratuitos de Realtime tienen cuotas estrictas.
+## Límites (importante)
+No hay aún servidor autoritativo de combate: las solicitudes de impacto y movimiento dependen de los clientes y pueden ser falsificadas. La ocupación máxima se controla en frontend y puede tener condiciones de carrera. Los códigos de sala no son contraseñas; no envíes datos personales a canales públicos. El marcador de shooter es temporal y los bots se simulan localmente. Antes de publicar torneos competitivos, usar servidor WebSocket autoritativo.
+
+Supabase Free tiene límites de Realtime: https://supabase.com/docs/guides/realtime/limits.
+Vercel aloja la página estática y no sustituye a un game server WebSocket persistente. No subir claves secretas.

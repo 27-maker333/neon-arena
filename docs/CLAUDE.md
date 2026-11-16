@@ -1,28 +1,35 @@
-# Instrucciones para Claude — NEON ARENA
+# NEON ARENA — HANDOFF PARA CLAUDE
 
-El repositorio contiene el backend de ChatGPT. Tu responsabilidad: desarrollar el frontend profesional en **web/** y revisar la integración.
-**Antes de editar:** leer docs/API.md y el motor supabase/functions/_shared/neon-blast.ts.
-No cambiar el esquema ni API sin proponer primero los cambios.
+Primero inspecciona el repositorio ya construido. No empieces desde cero ni sustituyas el juego con una landing vacía.
 
-## Stack
-React + Vite + TypeScript + Tailwind CSS + Motion + Lucide React + React Router + Phaser + @supabase/supabase-js. Zustand opcional.
+URL de pruebas: https://neon-arena-gaming.vercel.app/
+GitHub: https://github.com/27-maker333/neon-arena
+Supabase está conectado, proyecto plbbuuhomxqhiidstigg.
 
-## Objetivo
-Web gaming premium y responsive (PC y móvil), tema oscuro #090C20, morado #7C3AED, cian #00D4FF, rosa #FF3DAD. Animaciones fluidas, microinteracciones, accesibilidad y prefers-reduced-motion.
-Landing SEO pública, catálogo, login/registro, perfil, dashboard, juego Neon Blast, ranking, inventario, tienda virtual, recompensas diarias. Admin fuera del MVP.
+## Archivos existentes
+- web/index.html: lobby, HUD y SEO.
+- web/arena.css + web/island.css: estilos responsive.
+- web/arena.js: motor 3D, cuatro armas, bots, colisiones, respawn y sincronización.
+- web/island.js: isla de unos 200 metros (puerto, bosque, ciudad, laboratorios, núcleo, fortaleza).
+- web/rooms.js: crear sala, entrar con código y copiar invitación.
+- web/assets/*.svg: ilustraciones y marca originales.
+- supabase/functions/arena-rooms/index.ts: API online para crear y localizar salas.
+- supabase/migrations/20261116020000_arena_rooms.sql: tabla de salas y límites de creación.
 
-## Integración
-- Variables: VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY, VITE_API_BASE_URL.
-- Supabase Auth Email/Password. Pasar token de acceso en Authorization Bearer a endpoints privados.
-- No poner nunca service role / contraseñas en frontend.
-- Para jugar POST /v1/matches/start y recibir seed. Reutilizar mismo engine compartido, NO crear reglas alternativas.
-- Registrar movimientos válidos {index,atMs}; POST /v1/matches/finish; reflejar resultado validado.
-- No inventar balance, partidas ni rankings. Si Supabase no está listo, habilitar modo demo etiquetado.
-- Cliente REST tipado, loading/error/empty, mobile-first, tests básicos.
-- No monetización con dinero real todavía.
+## Prioridades
+1. Probar dos clientes conectados al mismo enlace y corregir errores WebGL/multiplayer.
+2. Mejorar personajes 3D: proporciones humanas, rigging, idle/run/jump/reload/shoot, modelados profesionales y materiales con licencias compatibles.
+3. Isla: interiores transitables, colisiones, coberturas y elevaciones reales; optimizar LOD/instancing.
+4. Armas: animaciones, efectos, audio CC0, balance, retículas y feedback de daño.
+5. Menús: lista de amigos, lobby de sala, crear/unirse con código, estados de error y reconexión.
+6. Calidad: pruebas en PC y móvil, accesibilidad, rendimiento, cámara, antitrampas y monitoreo.
+7. Migrar a React/TypeScript modular sin romper el juego jugable.
+8. Para competitivo serio, reemplazar transporte de daño basado en clientes por servidor autoritativo.
 
-## Entregables
-web/ con package.json, src/, index.html, configuración Tailwind, pantallas implementadas, README propio; scripts npm run dev, build y test.
-Cloudflare Pages compatible (build: npm run build, output: web/dist).
-Incluye review de integración en docs/FRONTEND_REVIEW.md.
-De momento NO existe proyecto Supabase real: el backend está versionado pero no desplegado.
+## Restricciones
+- No usar APIs de pago sin autorización.
+- El backend actual usa Supabase Realtime público para prototipos y tiene límites estrictos.
+- Nunca publicar SUPABASE_SERVICE_ROLE_KEY ni secret keys en el frontend.
+- Los disparos son reportados por clientes: aún no se puede garantizar juego sin trampas.
+- Los invitados acceden mediante un código; no equivale a autenticación fuerte.
+- No mostrar bots como jugadores humanos reales.
