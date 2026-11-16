@@ -1,13 +1,29 @@
-# NEON ARENA · shooter 3D web
+# NEON ARENA — TITAN ISLAND
 
-Versión desplegada: https://neon-arena-gaming.vercel.app/
+Producción: https://neon-arena-gaming.vercel.app/
 
-Abrir desde HTTPS para usar módulos ESM, WebGL y Supabase Realtime. El proyecto es estático y no requiere instalar npm.
+## Empezar
+Abre la web en un navegador compatible con WebGL. Escribe nickname, elige color y selecciona:
+- Isla pública: sala PUB222.
+- Crear sala: título, crear código de 6 caracteres, copiar enlace.
+- Unirme: pegar el código recibido por un amigo.
 
-- index.html: lobby, HUD y SEO.
-- arena.css: diseño arcade responsive.
-- arena.js: escena 3D, jugador, IA de práctica y multijugador.
+### Juego
+- WASD + mouse/clic para moverse, mirar y disparar.
+- Espacio saltar, Shift correr, R recargar, teclas 1–4 elegir arma, ESC pausa.
+- Móvil: joystick táctil, gestos de cámara, botones de acción.
+
+## Archivos
+- index.html + arena.css + island.css: interfaz y SEO.
+- arena.js: juego Three.js.
+- island.js: gran isla procedural con 6 zonas.
+- rooms.js: conexión a API de salas, enlaces e invitaciones.
+- config.js: configuración pública de Supabase.
 - assets/: ilustraciones SVG originales.
-- config.js: valores públicos del proyecto Supabase.
 
-Deathmatch usa Broadcast/Presence con una sala única, límite de 6 jugadores recomendado. No existe servidor autoritativo de combate. Prohibido publicar claves service_role en el navegador.
+## Desarrollo
+Desde web/: python -m http.server 8000. No requiere npm; módulos cargados con CDN.
+La web se despliega en Vercel. Servicio de salas y Realtime están alojados en Supabase.
+
+## Límites
+La API de salas está activa y permite crear y unirse por código, pero el combate online usa mensajes entre clientes. No tiene árbitro autoritativo ni controles antitrampas suficientes para competir por premios reales.

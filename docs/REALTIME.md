@@ -1,18 +1,23 @@
-# NEON ARENA — Especificación multijugador de prueba
+# MULTIPLAYER TITAN ISLAND
 
-Sala única: neon-arena:deathmatch:room-001.
-Tecnología: Supabase Realtime Presence y Broadcast. Sin contraseñas de servidor en cliente.
-Presencia: id, name, color, kills, deaths, joinedAt. Se actualiza en la entrada y al cambiar el marcador, no en cada fotograma.
-State (broadcast): id, x, z, yaw, hp, live (aproximadamente 3 envíos/segundo/jugador).
-Shot (broadcast): id, end (punto de impacto, solo efecto visual).
-Hit (broadcast): by, to, damage, t (el cliente afectado aplica daño).
-Kill (broadcast): victim, by (se actualiza el marcador en vivo).
+## API de salas (backend desplegado)
+Supabase Edge Function: https://plbbuuhomxqhiidstigg.supabase.co/functions/v1/arena-rooms
+GET / -> comprobación de servicio.
+POST body action=public -> sala PUB222.
+POST body action=join,code=ABC234 -> devuelve sala.
+POST body action=create,title=Mi Sala,max_players=8,is_private=true -> sala privada temporal.
+La API tiene CORS limitado, validación de input, control de cuotas por huella de IP y expiración de salas.
 
-La sala permite un máximo recomendado de 6 clientes, solo verificado en frontend. El contador no es autoritativo.
-Los bots son locales, únicamente cuando no hay otros usuarios, y no se registran en Realtime.
+## Realtime
+Cada sala crea un canal público con nombre na:room:CODE. Presence sincroniza miembros; Broadcast sincroniza posición, efectos de disparo, impacto y muerte.
+Frecuencia de estados adaptativa al número de miembros para reducir la cuota del plan gratuito.
 
-SEGURIDAD: el cliente comunica impactos y puntuaciones, por lo que un usuario con un navegador modificado puede hacer trampas. Antes de crecer se necesita un servidor autoritativo que valide posición, visibilidad, cadencia, daño y eliminaciones. No usar este MVP para premios con valor real.
+## Seguridad (beta)
+- Se comprueba el código de sala en el servidor, pero los canales Realtime son públicos a quien conozca el nombre.
+- El servidor no valida inputs, velocidad ni impacto; los clientes podrían mentir.
+- El máximo de 8 personas se verifica en el cliente; no sustituye reserva de plazas del backend.
+- No compartir datos personales ni usar saldo monetario en salas.
+- Antes de torneos serios, instalar game server autoritativo Colyseus/Node o equivalente y ejecutar pruebas de carga.
 
-Cuotas de Supabase Realtime Free (2026): 200 conexiones por proyecto, 100 mensajes por segundo y 2 millones de mensajes por mes. Ver https://supabase.com/docs/guides/realtime/limits.
-
-PRUEBAS PENDIENTES: dos navegadores conectados a la misma sala; movimiento mutuo; raycast de disparo; daño, eliminación, respawn; reconexión y móvil.
+## Pruebas realizadas
+Desde un despliegue Vercel se comprobó la API de sala pública, se creó una sala privada y se verificó la unión por código. No se ha comprobado una partida WebGL completa entre dos dispositivos; queda como prueba manual recomendada.
