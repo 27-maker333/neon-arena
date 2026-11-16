@@ -5,7 +5,7 @@ const url=Deno.env.get('SUPABASE_URL');
 const serviceKey=Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
 if(!url||!serviceKey) throw new Error('Missing Supabase environment');
 const db=createClient(url,serviceKey,{auth:{persistSession:false,autoRefreshToken:false}});
-const origins=(Deno.env.get('ALLOWED_ORIGINS')??'http://localhost:5173').split(',').map(x=>x.trim()).filter(Boolean);
+const origins=(Deno.env.get('ALLOWED_ORIGINS')??'https://neon-arena-gaming.vercel.app,http://localhost:5173,http://localhost:8000').split(',').map(x=>x.trim()).filter(Boolean);
 function cors(req:Request):HeadersInit {
  const origin=req.headers.get('origin');
  return {'Access-Control-Allow-Origin':origin&&origins.includes(origin)?origin:(origin?'null':'*'),
