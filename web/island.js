@@ -14,7 +14,7 @@ export function buildIsland3D({THREE,world,materials,obstacles,box,addSolid,sign
  function roadStrip(x1,z1,x2,z2,width=6){
   const midx=(x1+x2)/2,midz=(z1+z2)/2,dist=Math.hypot(x2-x1,z2-z1),ang=Math.atan2(x2-x1,z2-z1);
   const r=box(width,.055,dist,road,midx,.035,midz,false);r.rotation.y=ang;
-  for(let k=-1;k<=1;k++)if(k!==0){const side=box(.16,.08,dist,stripe,midx+Math.cos(ang)*width*.40,.085,midz-Math.sin(ang)*width*.40,false);side.rotation.y=ang}
+  for(let k=-1;k<=1;k++)if(k!==0){const side=box(.16,.08,dist,stripe,midx+Math.cos(ang)*width*.40*k,.085,midz-Math.sin(ang)*width*.40*k,false);side.rotation.y=ang}
  }
  const main=[[0,0],[0,-55],[57,-23],[49,42],[0,57],[-54,22],[-58,-41]];
  for(let i=1;i<main.length;i++)roadStrip(0,0,main[i][0],main[i][1],6.7);
@@ -43,14 +43,13 @@ export function buildIsland3D({THREE,world,materials,obstacles,box,addSolid,sign
  const leaves=[m(0x297a65),m(0x388862),m(0x8bc478)],trunk=m(0x664b39);
  for(let i=0;i<55;i++){
   const ang=i*2.39996,r=7+Math.sqrt(i/55)*33,x=-56+Math.sin(ang)*r,z=24+Math.cos(ang)*r;
-  if(Math.hypot(x,z)>91||Math.hypot(x+54,z-22)<9||Math.abs(z)<5)returnIfFalse();
+  if(Math.hypot(x,z)>91||Math.hypot(x+54,z-22)<9||Math.abs(z)<5)continue;
   const stem=new THREE.Mesh(new THREE.CylinderGeometry(.36,.5,4,6),trunk);stem.position.set(x,2,z);stem.castShadow=true;world.add(stem);
   for(let k=0;k<3;k++){
    const foliage=new THREE.Mesh(new THREE.ConeGeometry(2.7-k*.48,3.5,7),leaves[(i+k)%3]);
    foliage.position.set(x,3.7+k*1.5,z);foliage.castShadow=true;world.add(foliage);
   }
  }
- function returnIfFalse(){ /* keep fixed procedural loops deterministic */ }
  for(let i=0;i<19;i++){
   const x=-45+Math.sin(i*17)*30,z=8+Math.cos(i*27)*25;
   const mesh=new THREE.Mesh(new THREE.DodecahedronGeometry(1.5+(i%3)*.4,0),rock);
@@ -96,6 +95,10 @@ export function buildIsland3D({THREE,world,materials,obstacles,box,addSolid,sign
   } else {
    const p=new THREE.Mesh(new THREE.OctahedronGeometry(1.7),materials.cyan);p.position.set(x,3,z);world.add(p);
   }
+ }
+ for(let i=0;i<4;i++){
+  const surf=new THREE.Mesh(new THREE.TorusGeometry(98+i*2.4,.18,5,110),new THREE.MeshBasicMaterial({color:0xb9f8ec,transparent:true,opacity:.24-i*.04}));
+  surf.rotation.x=Math.PI/2;surf.position.y=-2.8-i*.06;world.add(surf);
  }
  const pulse=new THREE.PointLight(0x6ee9ed,30,29);pulse.position.set(0,10,0);world.add(pulse);
  // Gradient sky direction is handled by game Three.js fog and sunlight.
