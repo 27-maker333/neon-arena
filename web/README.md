@@ -1,7 +1,13 @@
-# NEON ARENA - web inicial
+# NEON ARENA · shooter 3D web
 
-Web gratuita y jugable sin dependencias externas. Ejecuta desde la carpeta web con python -m http.server 8000 y abre localhost:8000.
+Versión desplegada: https://neon-arena-gaming.vercel.app/
 
-Modo demo inicial: el récord se guarda solo en el navegador. Para activar cuentas, ranking y recompensas, despliega el backend de Supabase y configura las TRES claves publicables en web/config.js: apiBaseUrl, supabaseUrl, supabaseAnonKey. NUNCA publiques service_role.
+Abrir desde HTTPS para usar módulos ESM, WebGL y Supabase Realtime. El proyecto es estático y no requiere instalar npm.
 
-Contrato API: docs/API.md. Claude puede convertir el frontend en React/Vite y Phaser más adelante sin cambiar el motor determinista del juego. También están incluidos title, meta description, Open Graph, robots.txt y manifest. Después de tener el dominio definitivo, registra sitemap y Search Console.
+- index.html: lobby, HUD y SEO.
+- arena.css: diseño arcade responsive.
+- arena.js: escena 3D, jugador, IA de práctica y multijugador.
+- assets/: ilustraciones SVG originales.
+- config.js: valores públicos del proyecto Supabase.
+
+Deathmatch usa Broadcast/Presence con una sala única, límite de 6 jugadores recomendado. No existe servidor autoritativo de combate. Prohibido publicar claves service_role en el navegador.

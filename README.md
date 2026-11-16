@@ -1,36 +1,26 @@
-# NEON ARENA — plataforma de videojuegos web
+# NEON ARENA — Deathmatch 3D
 
-Repositorio de desarrollo del proyecto NEON ARENA. **El backend inicial está versionado, pero todavía no está desplegado. El frontend aún no está implementado.**
+Sitio: https://neon-arena-gaming.vercel.app/
 
-## Archivos principales
+Juego 3D en tercera persona con personajes estilizados de bloques, un único mapa y una sala compartida en Supabase Realtime. El juego funciona con hasta 6 participantes por sala en esta versión de prueba. Si juegas solo, aparecen bots locales para practicar.
 
-- `supabase/migrations/20261116000000_init.sql`: tablas PostgreSQL, RLS, rankings, recompensas y tienda.
-- `supabase/functions/api/index.ts`: 13 rutas HTTP de Supabase Edge Functions.
-- `supabase/functions/_shared/neon-blast.ts`: reglas compartidas del juego Neon Blast.
-- `docs/API.md`: contrato de integración REST.
-- `docs/CLAUDE.md`: instrucciones técnicas para desarrollar la web con Claude.
-- `.env.example`: variables de entorno públicas de ejemplo; nunca subir contraseñas.
+## Controles
+PC: WASD mover, mouse mirar, clic disparar, espacio saltar, shift correr, R recargar, ESC pausa.
+Móvil: joystick virtual, gesto para apuntar, botones de salto/disparo/recarga.
 
-## Configurar backend
+## Código fuente
+- web/index.html: lobby, paneles y HUD.
+- web/arena.css: interfaz responsive.
+- web/arena.js: escena Three.js, combate, movimiento, bots y realtime.
+- web/assets/: SVG originales de marca y póster.
+- web/config.js: URL y clave PUBLICABLE de Supabase. Nunca subir una clave privada.
+- docs/REALTIME.md: protocolo de eventos y límites técnicos.
 
-1. Crear un proyecto en https://supabase.com/dashboard/ (plan gratuito).
-2. Instalar Supabase CLI e iniciar sesión con `supabase login`.
-3. Desde la raíz ejecutar `supabase link --project-ref TU_PROJECT_REF`.
-4. Ejecutar `supabase db push` para aplicar la migración.
-5. Configurar CORS con `supabase secrets set ALLOWED_ORIGINS=https://tu-web.pages.dev,http://localhost:5173`.
-6. Desplegar con `supabase functions deploy api --no-verify-jwt` (las rutas privadas validan el token internamente).
-7. Activar Supabase Auth Email/Password y configurar URLs de redirección.
-8. En el futuro frontend usar `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` y `VITE_API_BASE_URL` (ver `.env.example`).
+Servir web/ con cualquier servidor HTTP. No requiere npm ni compilación; los módulos Three.js y Supabase JS se cargan desde CDN.
 
-URL de prueba tras desplegar: `https://PROJECT_REF.supabase.co/functions/v1/api/v1/health`.
+## Estado técnico
+La versión inicial está publicada con la conexión de Vercel. Los cambios del repositorio no se despliegan automáticamente todavía.
+El multiplayer por Broadcast NO tiene servidor autoritativo; los movimientos y daños pueden falsificarse desde un navegador alterado. No es apto para clasificaciones profesionales ni premios reales hasta añadir validación centralizada, controles antifraude y pruebas con varios jugadores reales.
+El backend legado para Neon Blast (SQL/Edge Functions) está todavía en supabase/ pero NO lo utiliza Deathmatch.
 
-## Para Claude
-
-Lee primero `docs/CLAUDE.md` y `docs/API.md`. Construye el frontend en carpeta `web/` con React, TypeScript, Vite y Phaser sin alterar las reglas compartidas. La compilación debe servir para Cloudflare Pages.
-
-## Seguridad y limitaciones
-
-- La clave `SUPABASE_SERVICE_ROLE_KEY` jamás debe estar en el navegador ni en GitHub.
-- La validación de puntuaciones mediante reproducción de movimientos es una primera barrera; faltan rate limits robustos, pruebas de integración y controles antifraude adicionales.
-- Todo está pensado para planes gratuitos con límites de uso, no recursos ilimitados.
-- Sin proyecto Supabase conectado no hay endpoints en funcionamiento ni web publicada.
+El marcador de Deathmatch es temporal y los bots son locales. Los planes gratuitos de Realtime tienen cuotas estrictas.
