@@ -91,7 +91,7 @@ function msg(t,isErr=false,id="#app-msg"){const e=$(id);e.textContent=t;e.classN
 function clearMsg(id){const e=$(id);e.textContent="";e.className="msg"}
 async function call(path,{method="GET",body,token=session?.access_token,headers={}}={}){
  const h={apikey:KEY,...headers};if(token)h.Authorization="Bearer "+token;
- if(body!==undefined && !(body instanceof FormData)){h["content-type"]="application/json";body=JSON.stringify(body);}
+ if(body!==undefined && !(body instanceof FormData) && !(body instanceof Blob)){h["content-type"]="application/json";body=JSON.stringify(body);}
  const res=await fetch(SB+path,{method,headers:h,body});
  let data=null;const txt=await res.text();try{data=txt?JSON.parse(txt):null}catch{data={message:txt}}
  if(!res.ok)throw Error(data?.msg||data?.error_description||data?.message||data?.error||("Error HTTP "+res.status));
