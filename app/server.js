@@ -51,7 +51,7 @@ app.use(express.json({
 app.use(express.urlencoded({ extended: false }));
 
 /* ---------------- API ---------------- */
-app.get('/api/health', (_req, res) => res.json({ status: 'ok', service: 'novashop-api' }));
+app.get('/api/health', (_req, res) => res.json({ status: 'ok', service: 'lubizjeans-api' }));
 app.use('/api/auth', require('./src/routes/auth'));
 app.use('/api/admin', require('./src/routes/admin'));
 app.use('/api', require('./src/routes/shop'));
