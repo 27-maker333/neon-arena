@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tienda</title>
+  <meta name="description" content="Tienda en línea: tecnología, accesorios y más con envío a todo el país.">
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/store.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="container">
+      <span id="topbar-msg">Envío gratis desde S/ 199 · Paga con transferencia, Yape o contra entrega</span>
+      <div class="tb-right">
+        <a href="#/seguimiento" id="tb-track"></a>
+        <a href="#" id="tb-phone" target="_blank" rel="noopener"></a>
+      </div>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="container header-main">
+      <a href="#/" class="logo" id="logo" aria-label="Inicio"><span class="logo-mark">N</span><span class="logo-name">Tienda</span></a>
+      <form class="search" id="search-form" role="search">
+        <label class="sr-only" for="search-input">Buscar productos</label>
+        <input class="input" id="search-input" type="search" placeholder="Buscar productos, marcas o categorías…" autocomplete="off" maxlength="80">
+      </form>
+      <nav class="header-actions" id="header-actions" aria-label="Cuenta y carrito"></nav>
+    </div>
+    <nav class="catnav" aria-label="Categorías"><div class="container" id="catnav"></div></nav>
+  </header>
+
+  <main id="app" tabindex="-1"></main>
+
+  <footer class="footer" id="footer"></footer>
+  <nav class="mnav" id="mnav" aria-label="Navegación"></nav>
+  <a class="wa-float" id="wa-float" href="#" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" hidden></a>
+
+  <script src="/js/lib.js"></script>
+  <script src="/js/store.js"></script>
+</body>
+</html>

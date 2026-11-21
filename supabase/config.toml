@@ -1,4 +1,0 @@
-project_id = "neon-arena"
-
-[functions.api]
-verify_jwt = false
