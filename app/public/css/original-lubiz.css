@@ -1,0 +1,42 @@
+:root{--primary:#de733e} .brand-mark{height:40px;width:40px;object-fit:contain;filter:drop-shadow(0 0 4px #cf8e5760)} .logo .brand-accent{color:var(--primary)}
+#announcement{font-weight:550}.hero.lubiz-original-hero{background:#090b0e;min-height:480px}
+.hero.lubiz-original-hero h1 span{color:#c7e998}.hero.lubiz-original-hero .hero-stats b{color:#d1eda4}
+.hero .hero-art.lubiz-girl-grid{display:grid;grid-template-columns:1.2fr .8fr;grid-template-rows:1fr 1fr;gap:12px;min-height:480px}
+.lubiz-girl-grid .hero-girl{display:block;border-radius:16px;position:relative;overflow:hidden;background:#273038}
+.lubiz-girl-grid .hero-girl:first-child{grid-row:span 2}
+.lubiz-girl-grid .hero-girl img{width:100%;height:100%;object-fit:cover;object-position:center 18%}
+.lubiz-girl-grid .hero-girl .tag{position:absolute;left:10px;right:10px;bottom:10px;border-radius:9px;padding:10px;background:#ffffffec;color:#1b2025;font-size:11px;font-weight:800}
+.denim-promo{background:linear-gradient(120deg,#182a32,#596f4a)}
+.catalog-message{padding:25px;background:#fff;border:1px dashed #c6cbd2;border-radius:15px;color:#5e6670;line-height:1.7}
+.catalog-message strong{color:#1b1e20}.catalog-message p{margin:7px 0 0}
+#shop-grid .shop-card{padding:0;border:1px solid var(--line);background:white;border-radius:18px;overflow:hidden;text-align:left;cursor:pointer;display:flex;flex-direction:column}
+#shop-grid .shop-card figure{aspect-ratio:1;margin:0;overflow:hidden}#shop-grid .shop-card img{width:100%;height:100%;object-fit:cover}
+#shop-grid .shop-card .shop-meta{padding:14px;display:flex;justify-content:space-between;gap:12px}#shop-grid .shop-card h3{font-size:15px}
+#shop-grid .shop-card small{color:#78808b;font-size:12px}#shop-grid .shop-card .price{font-weight:800;font-size:16px}
+#shop-grid .shop-card s{display:block;color:#757b84;font-size:12px}
+#lookbook,#coleccion,#historia{scroll-margin-top:160px}
+.look-toolbar{display:flex;justify-content:space-between;gap:16px;margin:0 0 23px}.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filter{border:1px solid var(--line);background:white;padding:10px 17px;border-radius:40px;cursor:pointer}.filter.active{background:#15171c;color:white}
+.search-box{display:flex;align-items:center;gap:8px;background:white;border:1px solid var(--line);padding:0 13px;border-radius:10px}.search-box span{font-size:22px}.search-box input{min-height:43px;border:0;outline:none}
+.look-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.look-card{background:#fff;border:1px solid var(--line);border-radius:17px;overflow:hidden}
+.look-photo{position:relative;aspect-ratio:3/4;overflow:hidden;background:#e6e9eb}.look-photo img{width:100%;height:100%;object-fit:cover}.look-number{position:absolute;top:9px;left:9px;padding:7px 10px;border-radius:8px;background:#15171c;color:white;font-size:11px}
+.look-type{font-size:11px;font-weight:700;letter-spacing:.06em;color:#8b909a;padding:13px 14px 3px}.look-card h3{font-size:16px;padding:4px 14px}.look-card p{font-size:12px;color:#777d87;padding:7px 14px 15px}
+.load-row{text-align:center;margin-top:28px}.original-footer{padding:50px 0 0}.original-footer-inner{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:45px}.original-footer-inner p{color:#c3c5ca;margin:12px 0}.original-footer-inner a:not(.logo){display:block;margin:8px 0}.original-footer .footer-bottom{margin-top:36px;border-top:1px solid #ffffff24}
+#contact-links .contact-action{display:inline-block;padding:12px 22px;border-radius:10px;background:#182228;color:#fff;font-weight:700;margin:8px}
+.shop-modal{position:fixed;inset:0;z-index:999;background:#000a;display:flex;align-items:center;justify-content:center;padding:16px}
+.shop-dialog{display:grid;grid-template-columns:1fr 1fr;max-width:890px;width:100%;background:#fff;border-radius:20px;overflow:hidden;position:relative}
+.shop-dialog>img{width:100%;height:100%;max-height:600px;object-fit:cover}.shop-dialog article{padding:35px;display:flex;flex-direction:column;gap:17px}
+.shop-dialog article strong{font-size:26px}.shop-dialog article p{line-height:1.7;color:#676f79}.shop-dialog article .kicker{color:#b75a2b;font-size:11px;font-weight:800}
+.shop-dialog article .btn-lime{background:#1b2927;color:#fff;padding:13px;text-align:center;font-weight:750}.shop-dialog article .btn-lime[disabled]{background:#e3e4e6;color:#818993;border:0}
+.shop-close{position:absolute;right:13px;top:13px;border-radius:100px;background:white;border:1px solid #ddd;width:36px;height:36px;z-index:5;font-size:25px}
+.toast{position:fixed;z-index:9999;bottom:25px;left:50%;transform:translate(-50%,150px);padding:14px 22px;border-radius:12px;background:#15171c;color:#fff;transition:transform .2s}.toast.show{transform:translate(-50%,0)}
+body.christmas .topbar{background:#922b38}body.christmas .hero.lubiz-original-hero h1 span{color:#f6d2b1}
+body.christmas .hero.lubiz-original-hero:after{content:"❄     ✳     ❄";position:absolute;z-index:4;right:20px;top:10px;font-size:22px;color:#ffe9c1}
+@media(max-width:900px){.look-grid{grid-template-columns:repeat(3,1fr)}#shop-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){.hero.lubiz-original-hero{display:grid;grid-template-columns:1fr}.hero.lubiz-original-hero .hero-text{padding:38px 24px 22px}.hero .hero-art.lubiz-girl-grid{height:360px;min-height:360px;padding:0 15px 15px;gap:10px}.hero .hero-art.lubiz-girl-grid .hero-girl{border-radius:11px}
+.look-toolbar{flex-direction:column}.look-grid{grid-template-columns:repeat(2,1fr)}.original-footer-inner{grid-template-columns:1fr 1fr;gap:20px}
+.old-mobile-nav{position:fixed;bottom:0;left:0;right:0;display:flex!important;justify-content:space-around;padding:8px 2px max(8px,env(safe-area-inset-bottom));z-index:150;background:#fff;border-top:1px solid #e3e5e7}
+.old-mobile-nav .dock-item{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 8px;font-weight:700;font-size:11px}.old-mobile-nav .dock-item span{font-size:22px}
+.old-mobile-nav .dock-item.active{color:var(--primary)}.original-footer{padding-bottom:80px}.shop-dialog{display:block;overflow:auto;max-height:95vh}.shop-dialog>img{height:210px}.shop-dialog article{padding:24px}}
+@media(max-width:480px){.look-grid{grid-template-columns:repeat(2,1fr);gap:10px}.original-footer-inner{grid-template-columns:1fr}.hero.lubiz-original-hero .hero-text h1{font-size:38px}.hero .hero-art.lubiz-girl-grid{height:295px;min-height:295px}.logo .brand-mark{width:34px;height:34px}.header-main{gap:9px}.topbar .container{font-size:11px}}
