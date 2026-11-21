@@ -52,8 +52,13 @@ app.use(express.urlencoded({ extended: false }));
 
 /* ---------------- API ---------------- */
 app.get('/api/health', (_req, res) => res.json({ status: 'ok', service: 'lubizjeans-api' }));
-app.use('/api/auth', require('./src/routes/auth'));
-app.use('/api/admin', require('./src/routes/admin'));
+// Las funciones de autenticación, administración y escritura ya usan
+// exclusivamente Supabase Auth/PostgreSQL/Storage. Bloquear el legado SQLite.
+app.use('/api/auth', (_req,res)=>res.status(410).json({error:'Acceso migrado a Supabase Auth. Usa /admin en lubizjeans.vercel.app'}));
+app.use('/api/admin', (_req,res)=>res.status(410).json({error:'Administración migrada a Supabase'}));
+app.use('/api/cart', (_req,res)=>res.status(410).json({error:'Carrito antiguo deshabilitado'}));
+app.use('/api/orders', (_req,res)=>res.status(410).json({error:'Pedidos antiguos deshabilitados'}));
+app.use('/api', (req,res,next)=>req.method==='GET'?next():res.status(410).json({error:'Usa la nueva tienda LubizJeans'}));
 app.use('/api', require('./src/routes/shop'));
 app.use('/api', (_req, _res, next) => next(new HttpError(404, 'Ruta no encontrada')));
 
