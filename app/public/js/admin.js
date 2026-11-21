@@ -51,8 +51,8 @@
     root.innerHTML = `<div class="adm-login">
       <div class="adm-login-art">
         <div class="logo" style="color:#fff">${logoHtml(true)}${state.settings.store_logo && state.settings.logo_show_name === '0' ? '' : esc(state.settings.store_name || 'Tienda')}</div>
-        <div><h2>Gestiona tu tienda desde un solo lugar</h2><p>Pedidos, inventario, clientes y cupones con información en tiempo real.</p>
-          <ul><li>${icon('check')} Control de stock automático</li><li>${icon('check')} Seguimiento de pedidos y pagos</li><li>${icon('check')} Exportación de ventas a CSV</li></ul></div>
+        <div><h2>LUBIZJEANS: tu universo denim, bajo control</h2><p>Colección, fotografías, tallas, inventario y pedidos en un solo lugar.</p>
+          <ul><li>${icon('check')} Gestiona jeans y sus existencias reales</li><li>${icon('check')} Controla los pedidos de tu marca</li><li>${icon('check')} Exportación de ventas a CSV</li></ul></div>
         <small style="color:#6c707b;position:relative;z-index:1">© ${new Date().getFullYear()} ${esc(state.settings.store_name || '')}</small>
       </div>
       <div class="adm-login-form">
@@ -61,7 +61,7 @@
           <label class="field"><span>Correo</span><input class="input" type="email" name="email" required autocomplete="username"></label>
           <label class="field"><span>Contraseña</span><input class="input" type="password" name="password" required autocomplete="current-password"></label>
           <button class="btn btn-primary btn-lg btn-block" type="submit" data-loading="Ingresando…">Ingresar al panel</button>
-          <div class="alert alert-info small">${icon('info')}<div>Demo: <b>admin@tienda.com</b> / <b>Admin123!</b><br>Cámbiala en el archivo <code>.env</code> antes de publicar.</div></div>
+          <div class="alert alert-info small">${icon('info')}<div>Acceso reservado para la persona administradora de LubizJeans. Cambia tu contraseña inicial en un entorno seguro.</div></div>
           <a href="/" class="btn btn-ghost">${icon('arrowLeft')} Volver a la tienda</a>
         </form>
       </div>

@@ -7,6 +7,21 @@ const { seed } = require('./src/seed');
 const { HttpError } = require('./src/utils');
 
 seed();
+// Primer inicio LubizJeans: guardar valores de marca y categorías reales (sin inventario ni pedidos falsos).
+const db = require('./src/db');
+const settings = require('./src/settings');
+if (!db.prepare('SELECT 1 FROM settings WHERE key = ?').get('lubiz_initialized')) {
+  const previousShop = db.prepare('SELECT value FROM settings WHERE key = ?').get('store_name');
+  // Nunca sobrescribir personalizaciones de una tienda real existente.
+  if (!previousShop || ['NovaShop','LubizJeans'].includes(previousShop.value)) {
+    settings.saveMany({ store_name: 'LubizJeans', store_logo: '/img/lubiz-mark.svg', store_logo_dark: '/img/lubiz-mark.svg', store_tagline: 'Denim sin reglas', primary_color: '#2f566e', whatsapp: '', contact_phone: '', contact_email: '', address: '', bank_info: '', yape_number: '', promo_banner_show: '0', pay_yape: '0', pay_transfer: '0', pay_cod: '0' });
+    for(const [idx,name] of ['Jeans Mujer','Jeans Hombre','Jeans Unisex'].entries()){
+      db.prepare('INSERT OR IGNORE INTO categories (name, slug, description, sort) VALUES (?,?,?,?)')
+        .run(name, ['jeans-mujer','jeans-hombre','jeans-unisex'][idx], 'Jeans auténticos · categoría lista para productos reales', idx);
+    }
+  }
+  db.prepare('INSERT OR REPLACE INTO settings (key,value) VALUES (?,?)').run('lubiz_initialized','1');
+}
 
 const app = express();
 app.disable('x-powered-by');

@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap');
+:root{--primary:#315a72!important;--primary-50:#e5eff3!important;--font:'DM Sans',Arial,sans-serif!important}
+body.admin{background:#f2f3f1;font-family:'DM Sans',Arial,sans-serif}
+.sidebar{background:#0b1014}.adm{background:linear-gradient(90deg,#0b1014 252px,transparent 252px)}
+.sidebar .logo{font-family:'Space Grotesk',sans-serif}.sidebar .logo small{color:#b5d1df}.sidebar .logo>span:last-child{font-size:16px;font-weight:800;letter-spacing:-.5px}.side-link.active{background:#d9ff88;color:#101518}.side-link.active .icon{color:#233b49}.sidebar .count{color:#101518;background:#d9ff88}.sidebar .avatar{color:#0b1014;background:#d9ff88}
+.adm-top{background:rgba(250,250,248,.94)}.adm-top h1{font-family:'Space Grotesk',sans-serif;font-weight:800;letter-spacing:-.6px}.adm-content h1,.adm-content h2,.adm-content h3,.kpi b{font-family:'Space Grotesk',sans-serif;letter-spacing:-.5px}
+.adm-login-art{background:#0b1116 url('https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=900&q=72&fit=crop') center/cover}.adm-login-art:before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(9,14,19,.96),rgba(9,14,19,.56))}.adm-login-art>*,.adm-login-art .logo{position:relative;z-index:1}.adm-login-art:after{display:none}.adm-login-art h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(37px,4vw,67px);letter-spacing:-2.5px}.adm-login-art li .icon{color:#d9ff88}.adm-login-form{background:#f6f7f3}.adm-login-form h1{font-family:'Space Grotesk',sans-serif;font-size:36px;letter-spacing:-1.3px}
+.btn-primary{background:#173547!important;border-color:#173547!important}.btn-primary:hover{background:#1e536b!important}.adm-content .card{border:1px solid #e1e6e6;box-shadow:0 3px 12px rgba(9,17,22,.035)}
+@media(max-width:1180px){.adm{background:#f2f3f1}}

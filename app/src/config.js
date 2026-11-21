@@ -17,7 +17,7 @@ const config = {
     email: (process.env.ADMIN_EMAIL || 'admin@tienda.com').toLowerCase(),
     password: process.env.ADMIN_PASSWORD || 'Admin123!',
   },
-  seedDemo: process.env.SEED_DEMO !== 'false',
+  seedDemo: process.env.SEED_DEMO === 'true',
 };
 
 if (config.env === 'production') {

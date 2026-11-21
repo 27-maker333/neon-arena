@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 112 112" fill="none" role="img" aria-labelledby="title desc">
+<title id="title">LubizJeans</title><desc id="desc">Monograma LJ dibujado como costuras de jeans</desc>
+<rect x="2" y="2" width="108" height="108" rx="26" fill="#171A1E" stroke="#D4E4ED" stroke-opacity=".24" stroke-width="2"/>
+<path d="M27 24v48c0 13 8 19 21 19h6" stroke="#F1F3EC" stroke-width="13" stroke-linecap="square"/>
+<path d="M80 24v47c0 14-7 21-20 21" stroke="#F1F3EC" stroke-width="13" stroke-linecap="square"/>
+<path d="M34 24v47c0 8 5 13 13 13m26-60v47c0 9-5 14-13 14" stroke="#9EC4DA" stroke-width="1.7" stroke-dasharray="3.5 4.2"/>
+<path d="M15 15h14m54 0h14M15 97h14m54 0h14" stroke="#AAC8DC" stroke-width="1.5" stroke-linecap="round"/>
+<circle cx="83" cy="21" r="3.2" fill="#D9FE8B"/>
+</svg>

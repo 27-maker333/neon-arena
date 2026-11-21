@@ -1,7 +1,7 @@
 {
-  "name": "novashop-tienda",
+  "name": "lubizjeans-api",
   "version": "1.5.0",
-  "description": "Tienda en línea con panel de administración (Node.js + Express + SQLite)",
+  "description": "LubizJeans · tienda denim con panel administrativo",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
